@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand Colors from existing site */
+  --color-forest:       #1a3d2b;
+  --color-forest-deep:  #0f2d1e;
+  --color-emerald:      #2d6a4f;
+  --color-emerald-light:#3d8a6a;
+  --color-gold:         #c9a84c;
+  --color-gold-light:   #e8d5a3;
+  --color-gold-dark:    #a8891f;
+  --color-ivory:        #f8f5ee;
+  --color-ivory-dark:   #ede9df;
+  --color-beige:        #d4c9b0;
+  --color-charcoal:     #1c1c1c;
+  --color-charcoal-soft:#2a2a2a;
+  --color-stone:        #6b6b5a;
+
+  /* Typography */
+  --font-serif:    var(--font-playfair), Georgia, serif;
+  --font-sans:     var(--font-montserrat), system-ui, sans-serif;
+  --font-display:  var(--font-playfair), Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-forest-deep);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-forest-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--color-gold); }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-forest-deep);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-serif { font-family: var(--font-serif); }
+.font-display { font-family: var(--font-display); }
+
+.text-gold-gradient {
+  background: linear-gradient(100deg, #a8891f 0%, #e8d5a3 35%, #c9a84c 55%, #f3e3b5 75%, #a8891f 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-sheen 6s ease-in-out infinite;
+}
+
+@keyframes gold-sheen {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.glass-dark {
+  background: rgba(15, 45, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 168, 76, 0.2);
 }
